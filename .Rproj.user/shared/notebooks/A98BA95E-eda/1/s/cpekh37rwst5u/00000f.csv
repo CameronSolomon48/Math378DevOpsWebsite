@@ -1,0 +1,4 @@
+"0","con <- DBI::dbConnect("
+"0","  duckdb::duckdb(), "
+"0","  dbdir = ""my-db.duckdb"""
+"0","  )"
