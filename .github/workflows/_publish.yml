@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
 - name: Publish to a server
   uses: CameronSolomon48/Math378DevOpsWebsite/publish@v2
