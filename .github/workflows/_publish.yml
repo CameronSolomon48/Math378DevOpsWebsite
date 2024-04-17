@@ -6,8 +6,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permission:
-      contents: write
     steps: 
       - name: Setup Node.js
         uses: actions/setup-node@v3
