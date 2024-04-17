@@ -6,12 +6,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-- name: Publish to a server
-  uses: CameronSolomon48/Math378DevOpsWebsite/publish@v2
-  with:
-    server-name: my-server
-    SERVER_URL: my-server.com
-    SERVER_API_KEY: ${{ secrets.SERVER_API_KEY }}
+    - name: Publish to a server
+      uses: CameronSolomon48/Math378DevOpsWebsite/publish@v2
+      with:
+        server-name: my-server
+        SERVER_URL: my-server.com
+        SERVER_API_KEY: ${{ secrets.SERVER_API_KEY }}
 
 - name: Install Python and Dependencies
   uses: actions/setup-python@v4 # <1>
