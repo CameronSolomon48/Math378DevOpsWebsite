@@ -3,7 +3,7 @@
     "path": "C:/Users/C25Cameron.Solomon/OneDrive - afacademy.af.edu/Desktop/Math 378/M378DevOpsWebsite/.github/workflows/_publish.yml",
     "project_path": ".github/workflows/_publish.yml",
     "type": "yaml",
-    "hash": "1608902457",
+    "hash": "1908596764",
     "contents": "",
     "dirty": false,
     "created": 1713364877974.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "7,19",
+        "cursorPosition": "7,26",
         "scrollLine": "5"
     },
     "folds": "",
-    "lastKnownWriteTime": 1713365795,
+    "lastKnownWriteTime": 1713366041,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1713365795899,
+    "last_content_update": 1713366041821,
     "read_only": false,
     "read_only_alternatives": []
 }

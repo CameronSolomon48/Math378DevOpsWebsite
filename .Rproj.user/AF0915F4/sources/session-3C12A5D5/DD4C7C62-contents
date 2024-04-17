@@ -6,7 +6,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
 - name: Publish to a server
   uses: CameronSolomon48/Math378DevOpsWebsite/publish@v2
   with:
