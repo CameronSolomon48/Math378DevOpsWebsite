@@ -18,7 +18,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "1 + 1\n\n[1] 2"
+    "text": "This website is directly based on Part 1 of the textbook DevOps for Data Science by Alex K Gold. The website is a result of the labs in chapters 1-6 of the textbook. The intent of these labs is to learn and practice DevOps conventions, tools, and practices that can be useful to data scientists. This website includes some exploratory data analysis and various models for observed data about penguins in the Palmer Archipelago, Antarctica. The data was collected by Dr. Kristen Gorman."
   },
   {
     "objectID": "model.html",
