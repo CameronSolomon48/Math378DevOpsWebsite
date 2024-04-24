@@ -56,7 +56,7 @@ b = pins.board_folder('data/model', allow_pickle_read=True)
 vetiver_pin_write(b,v)
 ```
 
-```{python}
+```
 import requests
 
 req_data = {
@@ -65,9 +65,8 @@ req_data = {
   "species_Gentoo": False,
   "sex_male": False
 }
+
 req = requests.post('http://127.0.0.1:8080/predict', json = [req_data])
 res = req.json().get('predict')[0]
 print(res)
 ```
-
-

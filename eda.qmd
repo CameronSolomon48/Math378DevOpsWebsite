@@ -47,7 +47,7 @@ con <- DBI::dbConnect(
 ```
 
 ```{r}
-DBI::dbWriteTable(con, "penguins", palmerpenguins::penguins)
+#DBI::dbWriteTable(con, "penguins", palmerpenguins::penguins)
 df <- dplyr::tbl(con, "penguins") 
 ```
 
@@ -65,7 +65,7 @@ df %>%
   knitr::kable()
 ```
 
-```{r}
+```{r} 
 DBI::dbDisconnect(con, shutdown=T)
 ```
  

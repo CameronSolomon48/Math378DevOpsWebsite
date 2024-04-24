@@ -8,6 +8,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - model.qmd
 
 format:
   html:
@@ -16,5 +17,3 @@ format:
     toc: true
 
 editor: visual
-
-freeze::auto
