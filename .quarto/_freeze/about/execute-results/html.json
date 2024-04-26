@@ -1,7 +1,7 @@
 {
-  "hash": "a754ce02c0472c0b163d8ffb898e69ac",
+  "hash": "56fa1ff8dbe50c5f569b28c179622c03",
   "result": {
-    "markdown": "---\ntitle: \"About\"\n---\n\n\nAbout this site\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "markdown": "---\ntitle: \"About\"\n---\n\n\nAbout This Site:\n\nThis website is directly based on Part 1 of the textbook *DevOps for Data Science* by Alex K Gold. The website is a result of the labs in chapters 1-6 of the textbook. The intent of these labs is to learn and practice DevOps conventions, tools, and practices that can be useful to data scientists. This website includes some exploratory data analysis and various models for observed data about penguins in the Palmer Archipelago, Antarctica. The data was collected by Dr. Kristen Gorman.\n\n\n::: {.cell}\n\n:::\n\n\n```{<html>}\n<img src=\"map.jpg\" alt=\"This is an image\" width=\"300\" height=\"200\" />\n</html>}\n```\n\n```{<html>}\n<img src=\"peng.jpg\" alt=\"This is an image\" width=\"300\" height=\"200\" />\n</html>}\n```\n\nAbout the Author:\n\nMy name is Cameron Solomon and I am currently a junior at the USAFA Academy. Creating this website was the final project for the course Math 378 - \"Applied Statistical Modeling\".\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

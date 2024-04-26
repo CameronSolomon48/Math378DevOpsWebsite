@@ -5,9 +5,12 @@ format:
     code-fold: true
 ---
 
-## Penguin Size and Mass by Sex and Species
+## Why EDA?
+  In this section we will complete various exploratory data analysis tasks. This will help us identify features of the data set and which models and modeling techniques are most appropriate.
 
-```{r}
+## Opening the data set:
+
+```{r, warning=FALSE, message=FALSE}
 library(palmerpenguins)
 library(dplyr)
 library(ggplot2)
@@ -18,7 +21,7 @@ library(vetiver)
 df <- palmerpenguins::penguins
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 df %>%
   group_by(species, sex) %>%
   summarise(
@@ -29,29 +32,72 @@ df %>%
     ) %>%
   knitr::kable()
 ```
+The table above shows the first 18 lines of the data. We can now see that we are dealing with 3 types of penguins (Adelie, Chinstrap, and Gentoo).
+Moreover, we have various record statistics about individual penguins including sex, bill characteristics, flipper length,and body mass. 
 
-## Penguin Size vs Mass by Species
+## Penguin Mass by Species:
 
-```{r}
+Now we will examine a few plots of various penguins statistics to get a better feel of how the data interacts. We are most interested in how the other statistics impact body mass.
+
+```{r, warning=FALSE, message=FALSE}
 df %>%
   ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +
   geom_point() + 
   geom_smooth(method = "lm")
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
+df %>%
+  ggplot(aes(x = bill_depth_mm, y = body_mass_g, color = species)) +
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+```{r, warning=FALSE, message=FALSE}
+df %>%
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+```{r, warning=FALSE, message=FALSE}
+df %>%
+  ggplot(aes(x = year, y = body_mass_g, color = species)) +
+  geom_point()
+```
+
+```{r, warning=FALSE, message=FALSE}
+boxplot(body_mass_g~year, data = df)
+```
+
+```{r, warning=FALSE, message=FALSE}
+df %>%
+  ggplot(aes(x = sex, y = body_mass_g, color = species)) +
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+```{r, warning=FALSE, message=FALSE}
+boxplot(body_mass_g~sex, data = df)
+```
+
+Now that we have some visuals we can start to produce models based on the data. These models will help us evaluate the data and make predictions.
+
+## Connecting to DuckDB:
+
+```{r, warning=FALSE, message=FALSE}
 con <- DBI::dbConnect(
   duckdb::duckdb(), 
   dbdir = "my-db.duckdb"
   )
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 #DBI::dbWriteTable(con, "penguins", palmerpenguins::penguins)
 df <- dplyr::tbl(con, "penguins") 
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(dplyr)
 df %>%
   group_by(species, sex) %>%
@@ -65,7 +111,7 @@ df %>%
   knitr::kable()
 ```
 
-```{r} 
+```{r, warning=FALSE, message=FALSE} 
 DBI::dbDisconnect(con, shutdown=T)
 ```
  

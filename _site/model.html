@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>M378DevOpsWebsite - Model</title>
+<title>M378DevOpsWebsite - Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,13 +146,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">Home</a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="./about.html">About</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./model.html" aria-current="page">Model</a>
+    <a class="nav-link active" href="./model.html" aria-current="page">Models</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./eda.html">EDA</a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -169,9 +169,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#get-data" id="toc-get-data" class="nav-link active" data-scroll-target="#get-data">Get Data</a></li>
-  <li><a href="#define-model-and-fit" id="toc-define-model-and-fit" class="nav-link" data-scroll-target="#define-model-and-fit">Define Model and Fit</a></li>
-  <li><a href="#get-some-information" id="toc-get-some-information" class="nav-link" data-scroll-target="#get-some-information">Get some information</a></li>
+  <li><a href="#get-data" id="toc-get-data" class="nav-link active" data-scroll-target="#get-data">Get Data:</a></li>
+  <li><a href="#model-1-linear-regression" id="toc-model-1-linear-regression" class="nav-link" data-scroll-target="#model-1-linear-regression">Model 1: Linear Regression</a>
+  <ul class="collapse">
+  <li><a href="#define-model-and-fit" id="toc-define-model-and-fit" class="nav-link" data-scroll-target="#define-model-and-fit">Define Model and Fit:</a></li>
+  <li><a href="#get-some-information" id="toc-get-some-information" class="nav-link" data-scroll-target="#get-some-information">Get some information:</a></li>
+  </ul></li>
+  <li><a href="#turning-model-into-a-vetiver-model" id="toc-turning-model-into-a-vetiver-model" class="nav-link" data-scroll-target="#turning-model-into-a-vetiver-model">Turning model into a vetiver model</a></li>
+  <li><a href="#shiny-app" id="toc-shiny-app" class="nav-link" data-scroll-target="#shiny-app">Shiny App</a></li>
   </ul>
 </nav>
     </div>
@@ -180,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Model</h1>
+<h1 class="title">Models</h1>
 </div>
 
 
@@ -209,7 +214,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <section id="get-data" class="level2">
-<h2 class="anchored" data-anchor-id="get-data">Get Data</h2>
+<h2 class="anchored" data-anchor-id="get-data">Get Data:</h2>
+<p>We will load in the data set and look at the first few lines.</p>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -275,8 +281,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-<section id="define-model-and-fit" class="level2">
-<h2 class="anchored" data-anchor-id="define-model-and-fit">Define Model and Fit</h2>
+<section id="model-1-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="model-1-linear-regression">Model 1: Linear Regression</h2>
+<p>Our first model will be a linear regression. We will use bill length, sex and species as our predictors and, naturally, body mass as our response.</p>
+<section id="define-model-and-fit" class="level3">
+<h3 class="anchored" data-anchor-id="define-model-and-fit">Define Model and Fit:</h3>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
@@ -287,8 +296,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 </section>
-<section id="get-some-information" class="level2">
-<h2 class="anchored" data-anchor-id="get-some-information">Get some information</h2>
+<section id="get-some-information" class="level3">
+<h3 class="anchored" data-anchor-id="get-some-information">Get some information:</h3>
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
@@ -304,7 +313,11 @@ Columns Index(['bill_length_mm', 'species_Chinstrap', 'species_Gentoo', 'sex_mal
 Coefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]</code></pre>
 </div>
 </div>
-<p>#turning model into a vetiver model</p>
+<p>Based on the statistics provided above we can see the that the model is explaining a solid amount of the variation in penguin body mass (R-squared = 0.856). Also, the coefficients/intercepts provide us with a simple and highly interpret-able model to use to predict penguin body mass. We will use this model again later. We will turn it into a vetiver model and eventually a shiny app.</p>
+</section>
+</section>
+<section id="turning-model-into-a-vetiver-model" class="level2">
+<h2 class="anchored" data-anchor-id="turning-model-into-a-vetiver-model">Turning model into a vetiver model</h2>
 <div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
@@ -325,9 +338,13 @@ Coefficients [  32.53688677 -298.76553447 1094.86739145  547.36692408]</code></p
  with vetiver.model_card()
 Writing pin:
 Name: 'penguin_model'
-Version: 20240417T163515Z-82872</code></pre>
+Version: 20240425T144846Z-82872</code></pre>
 </div>
 </div>
+</section>
+<section id="shiny-app" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-app">Shiny App</h2>
+<p>Although a Shiny app is not included in this website, the following code was used as part of “DevOps for Data Science” Chapter 3, and was used to build a shiny app.</p>
 <pre><code>import requests
 
 req_data = {

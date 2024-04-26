@@ -5,10 +5,12 @@ website:
   title: "M378DevOpsWebsite"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-      - model.qmd
+#      - href: index.qmd
+#        text: Home
+      - href: about.qmd
+      - href: model.qmd
+      - href: eda.qmd
+        text: EDA
 
 format:
   html:

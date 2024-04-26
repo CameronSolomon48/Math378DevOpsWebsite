@@ -1,3 +1,5 @@
+"0","reticulate::repl_python()"
+"0","reticulate::repl_python()"
 "0","df = penguins.load_penguins().dropna()"
 "0",""
 "0","df.head(3)"

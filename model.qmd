@@ -1,11 +1,11 @@
 ---
-title: "Model"
+title: "Models"
 format:
   html:
     code-fold: true
 ---
 
-```{python}
+```{python, warning=FALSE, message=FALSE}
 from palmerpenguins import penguins
 from pandas import get_dummies
 import numpy as np
@@ -17,24 +17,30 @@ import duckdb
 import pins
 ```
 
-## Get Data
+## Get Data:
 
-```{python}
+We will load in the data set and look at the first few lines.
+
+```{python, warning=FALSE, message=FALSE}
 df = penguins.load_penguins().dropna()
 
 df.head(3)
 ```
 
-## Define Model and Fit
+## Model 1: Multiple Linear Regression
 
-```{python}
+Our first model will be a linear regression. We will use bill length, sex and species as our predictors and, naturally, body mass as our response.
+
+### Define Model and Fit:
+
+```{python, warning=FALSE, message=FALSE}
 X = get_dummies(df[['bill_length_mm', 'species', 'sex']], drop_first = True)
 y = df['body_mass_g']
 
 model = LinearRegression().fit(X, y)
 ```
 
-## Get some information
+### Get some information:
 
 ```{python}
 print(f"R^2 {model.score(X,y)}")
@@ -43,18 +49,79 @@ print(f"Columns {X.columns}")
 print(f"Coefficients {model.coef_}")
 ```
 
-#turning model into a vetiver model
+Based on the statistics provided above we can see the that the model is explaining a solid amount of the variation in penguin body mass (R-squared = 0.856). Also, the coefficients/intercepts provide us with a simple and highly interpret-able model to use to predict penguin body mass. We will use this model again later. We will turn it into a vetiver model and eventually a shiny app. However, lets see if we can improve our model by incorporating more predictors without overfitting the data. 
+
+## Model #2: Multiple Linear Regression #2
+
+### Define Model and Fit:
+
+```{python, warning=FALSE, message=FALSE}
+X = get_dummies(df[['bill_length_mm', 'species', 'sex', 'island', 'bill_depth_mm','flipper_length_mm']], drop_first = True)
+y = df['body_mass_g']
+
+model = LinearRegression().fit(X, y)
+```
+
+Note, this regression includes all possible predictors except the year. This is because we only have data from 2 years, and based on the boxplots created in our EDA there does not seem to be notable variation in body mass across the years 2007 and 2008.
+
+### Get some information:
+
+```{python}
+print(f"R^2 {model.score(X,y)}")
+print(f"Intercept {model.intercept_}")
+print(f"Columns {X.columns}")
+print(f"Coefficients {model.coef_}")
+```
+
+Note that the R-squared for our second multiple linear regression model is stronger than that of our first. Not by much, though. A future area of interest by be to evaluate the adjusted R-squared and/or use other methods from Math 378 to maximize our incoperated predictors without over fitting.
+
+## Model #3: Classification Tree
+
+In this model we well build a tree to predict penguin body mass. 
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)      # for data wrangling
+library(ISLR2)          # for data sets
+library(tidymodels)     # for modeling
+library(rpart.plot)     # for plotting trees
+```
+
+
+```{r}
+regtree_spec <- decision_tree() %>%      
+  set_engine("rpart") %>%      
+  set_mode("regression")
+```
+
+```{r}
+reg_tree_fit <- regtree_spec %>%    
+  fit(body_mass_g ~ ., data = df)
+```
+
+```{r}
+reg_tree_fit %>%      
+  extract_fit_engine() %>%      
+  rpart.plot()
+```
+
+Using the model above we can predict a penguin's body mass by its various characteristics. For instance a female Adelie penguin is predicted to have a body mass of 3421 grams. Although this model is somewhat rudimentary, it is highly interpret-able because of it's visual aspects. Future exploration could look at using cross-fold validation to the optimal level for tree complexity. Moreover, although it reduces interpretate-ability, Bagging, Boosting, Random Forests, or BART are ensemble methods that we could use to create better predictions.
+
+## Turning model into a vetiver model
 
 ```{python}
 v = VetiverModel(model, model_name='penguin_model', prototype_data=X)
 ```
 
-```{python}
+```{python, warning=FALSE, message=FALSE}
 from pins import board_folder
 from vetiver import vetiver_pin_write
 b = pins.board_folder('data/model', allow_pickle_read=True)
 vetiver_pin_write(b,v)
 ```
+
+## Shiny App
+
+Although a Shiny app is not included in this website, the following code was used as part of "DevOps for Data Science" Chapter 3, and was used to build a shiny app.  
 
 ```
 import requests
